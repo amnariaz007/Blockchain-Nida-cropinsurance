@@ -54,6 +54,7 @@ const WeatherProvider = () => {
   }
   }
 
+  
   return (
     <div className="flex flex-col items-center justify-center  w-[600px] max-w-[100%] mx-auto bg-gray-100 p-4">
       {/* Policies Paragraph */}
