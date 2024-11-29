@@ -25,12 +25,7 @@ export const statisticsCardsData = [
     title: "Weather Provider",
     link: "/dashboard/Weather-provider"
   },
-  {
-    color: "gray",
-    icon: CurrencyDollarIcon,
-    title: "Payout",
-    link: "/dashboard/payout"
-  },
+ 
   {
     color: "gray",
     icon: ChatBubbleBottomCenterIcon,

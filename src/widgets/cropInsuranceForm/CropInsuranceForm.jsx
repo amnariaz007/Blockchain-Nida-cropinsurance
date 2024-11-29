@@ -29,11 +29,9 @@ const CropInsuranceForm = () => {
   const addCropInsurancee = async () => {
    
     try {
-
       if(!address){
         open()
       }
-
       const ethersProvider = new ethers.providers.Web3Provider(walletProvider)
       console.log(ethersProvider,"ether");
       const signer = ethersProvider.getSigner()

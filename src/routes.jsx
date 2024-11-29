@@ -62,12 +62,7 @@ export const routes = [
         path: "/feedback",
         element: <Feedback />,
       },
-      {
-        icon: <CurrencyDollarIcon {...icon} />,
-        name: "Payout",
-        path: "/payout",
-        element: <Payout/>,
-      },
+     
       // {
       //   icon: <InformationCircleIcon {...icon} />,
       //   name: "notifications",
