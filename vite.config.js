@@ -4,13 +4,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: {
-      ethers5: "ethers", // Map ethers5 to ethers
-    },
+    alias: [{ find: "@", replacement: "/src" }],
   },
-  build: {
-    rollupOptions: {
-      external: ["ethers"], // Explicitly mark ethers as an external dependency
-    },
+  server: {
+    port: 5174, // Ensure this matches the port Vite is using
+    host: true // Expose to local network
   },
+ 
 });

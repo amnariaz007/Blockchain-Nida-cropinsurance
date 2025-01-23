@@ -21,6 +21,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers5/react'
 
+//import { createWeb3Modal, } from '@web3modal/base';
+
+
+
 // 1. Get projectId
 const projectId = 'YOUR_PROJECT_ID'
 
