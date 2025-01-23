@@ -5,7 +5,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      ethers5: "ethers",
+      ethers5: "ethers", // Map ethers5 to ethers
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: ["ethers"], // Explicitly mark ethers as an external dependency
     },
   },
 });
