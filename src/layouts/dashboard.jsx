@@ -48,6 +48,11 @@ export function Dashboard() {
           <Footer />
         </div> */}
 
+<div className="text-zinc-600 flex items-center justify-evenly mt-80 text-xl " >
+
+        Wellcome to Wallet Manager
+</div>
+
         
       </div>
     </div>

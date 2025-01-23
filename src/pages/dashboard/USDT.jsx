@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useWeb3Modal, useWeb3ModalAccount, useWeb3ModalProvider } from "@web3modal/ethers5/react";
 import { CROP_CONTRACT_ABI, CROP_CONTRACT_ADDRESS } from "../../constant";
@@ -8,9 +8,24 @@ export function USDT() {
   const { address } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
 
-  const [wallets, setWallets] = useState([{ walletAddress: "", balance: "" }]);
+  const [wallets, setWallets] = useState([]);
   const [totalBalance, setTotalBalance] = useState(0);
   const [amountToDistribute, setAmountToDistribute] = useState("");
+
+  // Load wallets from localStorage when the component mounts
+  useEffect(() => {
+    const storedWallets = localStorage.getItem("wallets");
+    if (storedWallets) {
+      setWallets(JSON.parse(storedWallets)); // Set state with wallets from localStorage
+    }
+  }, []);
+
+  // Update localStorage whenever wallets change
+  useEffect(() => {
+    if (wallets.length > 0) {
+      localStorage.setItem("wallets", JSON.stringify(wallets)); // Store wallets in localStorage
+    }
+  }, [wallets]);
 
   const addWallets = async (e) => {
     e.preventDefault();
@@ -84,6 +99,11 @@ export function USDT() {
     setWallets([...wallets, { walletAddress: "", balance: "" }]);
   };
 
+  const deleteWallet = (index) => {
+    const updatedWallets = wallets.filter((_, i) => i !== index);
+    setWallets(updatedWallets);
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form
@@ -99,7 +119,7 @@ export function USDT() {
               type="text"
               name="walletAddress"
               className="p-2 border border-gray-300 rounded mb-4"
-              value={wallet.walletAddress}
+              value={wallet.walletAddress} // Use the value from state
               onChange={(e) => handleWalletChange(index, "walletAddress", e.target.value)}
               required
             />
@@ -109,10 +129,18 @@ export function USDT() {
               type="number"
               name="balance"
               className="p-2 border border-gray-300 rounded"
-              value={wallet.balance}
+              value={wallet.balance} // Use the value from state
               onChange={(e) => handleWalletChange(index, "balance", e.target.value)}
               required
             />
+
+            <button
+              type="button"
+              onClick={() => deleteWallet(index)}
+              className="bg-red-500 text-white px-4 py-2 rounded mt-2"
+            >
+              Delete Wallet
+            </button>
           </div>
         ))}
 
